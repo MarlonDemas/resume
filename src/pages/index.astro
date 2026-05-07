@@ -1,0 +1,274 @@
+---
+import Base from '../layouts/Base.astro';
+import { person, work, philosophy, experience, stack, testimonials } from '../content/index';
+
+const featured = work.find(w => w.featured)!;
+const secondary = work.filter(w => !w.featured).slice(0, 2);
+const bottom = work.filter(w => !w.featured).slice(2);
+---
+<Base
+  title="Marlon Demas — Senior Full-Stack Engineer"
+  description="Senior full-stack engineer for founders shipping complex products. 7 years across web, mobile, blockchain. Available for contracts."
+>
+
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <div class="brand">
+      <div class="mark">M</div>
+      <span class="brand-name">{person.name}</span>
+      <span class="brand-sub mono">· Senior FS Engineer</span>
+    </div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#approach">Approach</a>
+      <a href="#experience">Experience</a>
+      <a href="#stack">Stack</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <a class="nav-dl mono" href="/Marlon Demas CV.pdf" download>↓ CV</a>
+      <div class="availability mono">
+        <span class="pulse"></span><span>Available · May '26</span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-glow"></div>
+  <div class="wrap">
+    <div class="hero-meta mono" data-reveal>
+      <span>Cape Town, SA</span><span class="dot">·</span>
+      <span>7 yrs shipping</span><span class="dot">·</span>
+      <span>Web · Mobile · Web3</span><span class="dot">·</span>
+      <span>Remote-friendly</span>
+    </div>
+    <div class="hero-grid">
+      <div data-reveal>
+        <h1 class="hero-title">
+          I ship complex<br/>products <span class="accent">end-to-end</span> —<br/>
+          <span class="dim">so founders don't have to babysit.</span>
+        </h1>
+        <p class="hero-sub">
+          Senior full-stack engineer for founders with ambiguous problems and tight runways. Currently on platform engineering for a school-safety SaaS used by 60,000+ schools across 55 countries.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#contact">Book a 30-min intro →</a>
+          <a class="btn btn-ghost" href="#work">See selected work</a>
+          <a class="btn btn-ghost" href="/Marlon Demas CV.pdf" download>↓ Download CV</a>
+        </div>
+      </div>
+      <div data-reveal style="transition-delay: .12s">
+        <div class="portrait-frame">
+          <img src="/marlon-portrait.png" alt="Marlon Demas portrait" />
+          <div class="portrait-tag mono"><span class="pulse"></span><span>{person.location} · {person.timezone}</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="glance" data-reveal style="transition-delay: .24s">
+      <div class="glance-card"><div class="glance-k mono">Experience</div><div class="glance-v">7 yrs</div></div>
+      <div class="glance-card"><div class="glance-k mono">Current</div><div class="glance-v">Specno · Cape Town</div></div>
+      <div class="glance-card"><div class="glance-k mono">On</div><div class="glance-v">Raptor Technologies</div></div>
+      <div class="glance-card"><div class="glance-k mono">Reach</div><div class="glance-v">60k schools / 55 countries</div></div>
+      <div class="glance-card"><div class="glance-k mono">Available</div><div class="glance-v">May 2026</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="work" class="block">
+  <div class="wrap">
+    <div class="block-head" data-reveal>
+      <div>
+        <div class="block-eyebrow mono">§ Selected work</div>
+        <h2>Some of what I've shipped.</h2>
+      </div>
+      <span class="meta mono">05 capsules · 2021 → now</span>
+    </div>
+
+    <div class="work-grid">
+      <article class="card card-large" data-reveal>
+        <div class="card-glow"></div>
+        <div class="card-tag mono">
+          <span class="lhs">{featured.tag}</span>
+          <span class="rhs">{featured.year}</span>
+        </div>
+        <div>
+          <h3>{featured.client}</h3>
+          <div class="card-role mono">{featured.role}{featured.via ? ` · ${featured.via}` : ''}</div>
+        </div>
+        <div class="card-visual">
+          <img src="/raptor-platform-visual-v3.png" alt="RaptorTech-inspired dashboard and emergency app product mockup" loading="lazy" decoding="async" />
+        </div>
+        <div class="label-row"><span class="l mono">The problem</span><p class="v">{featured.problem}</p></div>
+        <div class="label-row"><span class="l mono">What I did</span><p class="v">{featured.contribution}</p></div>
+        <div class="stack-pills">
+          {featured.stack.map(s => <span class="pill">{s}</span>)}
+        </div>
+      </article>
+
+      <div class="col-right">
+        {secondary.map(item => (
+          <article class="card" data-reveal>
+            <div class="card-glow"></div>
+            <div class="card-tag mono">
+              <span class="lhs">{item.tag}</span>
+              <span class="rhs">{item.year}</span>
+            </div>
+            <div>
+              <h3>{item.client}</h3>
+              <div class="card-role mono">{item.role}{item.via ? ` · ${item.via}` : ''}</div>
+            </div>
+            <div class="label-row"><span class="l mono">The problem</span><p class="v">{item.problem}</p></div>
+            <div class="label-row"><span class="l mono">What I did</span><p class="v">{item.contribution}</p></div>
+            <div class="stack-pills">
+              {item.stack.map(s => <span class="pill">{s}</span>)}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <div class="work-grid-2">
+      {bottom.map(item => (
+        <article class="card" data-reveal>
+          <div class="card-glow"></div>
+          <div class="card-tag mono">
+            <span class="lhs">{item.tag}</span>
+            <span class="rhs">{item.year}</span>
+          </div>
+          <div>
+            <h3>{item.client}</h3>
+            <div class="card-role mono">{item.role}</div>
+          </div>
+          <div class="label-row"><span class="l mono">The problem</span><p class="v">{item.problem}</p></div>
+          <div class="label-row"><span class="l mono">What I did</span><p class="v">{item.contribution}</p></div>
+          <div class="stack-pills">
+            {item.stack.map(s => <span class="pill">{s}</span>)}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section id="approach" class="block" style="border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair);">
+  <div class="wrap">
+    <div class="phil-grid">
+      <aside class="phil-aside" data-reveal>
+        <div class="block-eyebrow mono">§ How I work</div>
+        <h2>Six things I refuse to skip.</h2>
+        <p>Senior isn't a title — it's a way of moving through ambiguity. This is mine, and it's why founders who hire me once tend to come back.</p>
+      </aside>
+      <div class="phil-list">
+        {philosophy.map(item => (
+          <div class="phil-item" data-reveal>
+            <div class="phil-num mono">{item.n}</div>
+            <div>
+              <h4 class="phil-title">{item.title}</h4>
+              <p class="phil-desc">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="block">
+  <div class="wrap">
+    <div class="block-head" data-reveal>
+      <div>
+        <div class="block-eyebrow mono">§ Experience</div>
+        <h2>The road here.</h2>
+      </div>
+      <span class="meta mono">2019 → present</span>
+    </div>
+    <div class="exp-list">
+      {experience.map(item => (
+        <article class="exp-item" data-reveal>
+          <div>
+            <div class="exp-when mono">{item.when}</div>
+            <div class="exp-org">{item.org}</div>
+            <div class="exp-where mono">{item.where}</div>
+          </div>
+          <div>
+            <div class="exp-role">{item.role}</div>
+            <ul class="exp-bullets">
+              {item.bullets.map(b => <li>{b}</li>)}
+            </ul>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section id="stack" class="block" style="border-top: 1px solid var(--hair);">
+  <div class="wrap">
+    <div class="block-head" data-reveal>
+      <div>
+        <div class="block-eyebrow mono">§ Stack</div>
+        <h2>Tools I reach for.</h2>
+      </div>
+      <span class="meta mono">Not exhaustive — judgment matters more than the list.</span>
+    </div>
+    <div class="stack-grid">
+      {Object.entries(stack).map(([cat, pills]) => (
+        <div class="stack-card" data-reveal>
+          <div class="stack-cat mono">{cat}</div>
+          <div class="stack-pills-2">
+            {pills.map(p => <span class="pill">{p}</span>)}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="block" style="border-top: 1px solid var(--hair);">
+  <div class="wrap">
+    <div class="block-head" data-reveal>
+      <div>
+        <div class="block-eyebrow mono">§ Words from others</div>
+        <h2>What teams have said.</h2>
+      </div>
+      <span class="meta mono">06 notes · real project feedback</span>
+    </div>
+    <div class="quote-grid">
+      {testimonials.map(t => (
+        <blockquote class="quote" data-reveal>
+          <div class="quote-mark">"</div>
+          <p class="quote-text">{t.quote}</p>
+          <div class="quote-from mono">— {t.from}</div>
+        </blockquote>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="contact-glow"></div>
+  <div class="wrap">
+    <div class="contact-grid">
+      <div data-reveal>
+        <div class="block-eyebrow mono">§ Working with me</div>
+        <h2>Let's talk about what you're <em>actually</em> trying to ship.</h2>
+        <p>Available for contracts from May 2026. Best fit: ambiguous, end-to-end product work where the brief still has open questions in it. I read every email I get.</p>
+      </div>
+      <div class="contact-card" data-reveal style="transition-delay: .12s">
+        <div class="contact-row"><span class="contact-k mono">Email</span><span class="contact-v mono"><a href={`mailto:${person.email}`}>{person.email}</a></span></div>
+        <div class="contact-row"><span class="contact-k mono">GitHub</span><span class="contact-v mono"><a href={person.githubUrl}>{person.github}</a></span></div>
+        <div class="contact-row"><span class="contact-k mono">LinkedIn</span><span class="contact-v mono"><a href={person.linkedinUrl}>{person.linkedin}</a></span></div>
+        <div class="contact-row"><span class="contact-k mono">Location</span><span class="contact-v mono">{person.location}</span></div>
+        <a class="btn btn-primary contact-cta" href={`mailto:${person.email}`}>Email me →</a>
+      </div>
+    </div>
+    <footer class="foot mono">
+      <span>© {person.name} — 2026</span>
+      <span>Built quietly. Shipped consistently.</span>
+      <span>v3 · May 2026</span>
+    </footer>
+  </div>
+</section>
+
+</Base>
