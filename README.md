@@ -1,4 +1,4 @@
-# marlondemas-site
+# Marlon Demas Portfolio & Resume
 
 Personal portfolio and recruiter-facing CV website for Marlon Demas, a senior
 full-stack engineer based in Cape Town.
