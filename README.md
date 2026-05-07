@@ -1,43 +1,86 @@
-# Astro Starter Kit: Minimal
+# marlondemas-site
 
-```sh
-pnpm create astro@latest -- --template minimal
-```
+Personal portfolio and recruiter-facing CV website for Marlon Demas, a senior
+full-stack engineer based in Cape Town.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The site is built with Astro and deployed on Netlify. It presents selected work,
+experience, stack, testimonials, contact links, and a downloadable PDF CV.
 
-## 🚀 Project Structure
+## Tech stack
 
-Inside of your Astro project, you'll see the following folders and files:
+- Astro 6
+- Tailwind CSS 4
+- TypeScript/JavaScript
+- pnpm
+- Node.js >= 22.12.0
+
+## Project structure
 
 ```text
 /
-├── public/
+├── public/                 Static assets served from the site root
 ├── src/
+│   ├── content/index.ts     Shared portfolio and CV content
+│   ├── layouts/Base.astro   Shared HTML shell, fonts, CSS, and small scripts
 │   └── pages/
-│       └── index.astro
+│       ├── index.astro      Portfolio homepage
+│       └── cv.astro         Recruiter-focused CV page
+├── astro.config.mjs
+├── netlify.toml
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Getting started
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Install dependencies:
 
-Any static assets, like images, can be placed in the `public/` directory.
+```sh
+pnpm install
+```
 
-## 🧞 Commands
+Start the local development server:
 
-All commands are run from the root of the project, from a terminal:
+```sh
+pnpm dev
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+Build the production site:
 
-## 👀 Want to learn more?
+```sh
+pnpm build
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Preview the production build locally:
+
+```sh
+pnpm preview
+```
+
+## Editing content
+
+Most portfolio and CV copy lives in `src/content/index.ts`. Update this file for:
+
+- Profile details and contact links
+- Tech stack
+- Work/project capsules
+- Experience history
+- Testimonials
+
+Static files live in `public/`. This includes the portrait, favicon, project
+visuals, and `Marlon Demas CV.pdf`. Files in `public/` are served from the site
+root, so the PDF is available at `/Marlon Demas CV.pdf`.
+
+## Routes
+
+- `/` - portfolio homepage for founders and general visitors
+- `/cv` - recruiter-focused CV page
+- `/portfolio` - redirects to `/` via Netlify
+
+## Deployment
+
+Netlify is configured in `netlify.toml`:
+
+- Build command: `pnpm build`
+- Publish directory: `dist`
+- Redirect: `/portfolio` to `/`
+- Basic security headers for all routes
