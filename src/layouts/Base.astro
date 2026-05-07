@@ -27,13 +27,16 @@ const { title, description } = Astro.props;
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
 
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', (ev) => {
         const id = (a as HTMLAnchorElement).getAttribute('href')!.slice(1);
         const t = document.getElementById(id);
         if (!t) return;
         ev.preventDefault();
-        window.scrollTo({ top: t.offsetTop - 70, behavior: 'smooth' });
+        const behavior = prefersReducedMotion.matches ? 'auto' : 'smooth';
+        window.scrollTo({ top: t.offsetTop - 70, behavior });
       });
     });
   </script>
